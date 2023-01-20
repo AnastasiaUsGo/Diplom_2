@@ -36,8 +36,9 @@ public class UserClient extends Client{
     }
 
     @Step("Изменение данных не авторизованного пользователя")
-    public ValidatableResponse changeDataUnauthorizedUser(User user) {
+    public ValidatableResponse changeDataUnauthorizedUser(User user, String accessToken) {
         return spec()
+                .header("Authorization", accessToken)
                 .body(user)
                 .when()
                 .patch(ROOT + "user")

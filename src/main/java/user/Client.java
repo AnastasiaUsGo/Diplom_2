@@ -13,7 +13,6 @@ public class Client {
     protected RequestSpecification spec() {
         return given().log().all()
                 .contentType(ContentType.JSON)
-                .baseUri(BASE_URI)
-                .basePath(API_PREFIX);
+                .baseUri(BASE_URI);
     }
 }
