@@ -26,7 +26,7 @@ public class ChangingUserDataTest {
     public void changeName(){
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
-        accessToken = check.SuccessfulResponse(response);
+        accessToken = check.successfulResponse(response);
         user.setName(faker.name().firstName());
         ValidatableResponse changeResponse = client.changeDataAuthorizedUser(user, accessToken);
     }
@@ -36,7 +36,7 @@ public class ChangingUserDataTest {
     public void changeEmail(){
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
-        accessToken = check.SuccessfulResponse(response);
+        accessToken = check.successfulResponse(response);
         user.setEmail(faker.internet().emailAddress());
         ValidatableResponse changeResponse = client.changeDataAuthorizedUser(user, accessToken);
     }
@@ -46,7 +46,7 @@ public class ChangingUserDataTest {
     public void changePassword(){
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
-        accessToken =  check.SuccessfulResponse(response);
+        accessToken =  check.successfulResponse(response);
         user.setPassword(faker.internet().password(6,10));
         ValidatableResponse changeResponse = client.changeDataAuthorizedUser(user, accessToken);
     }

@@ -25,7 +25,7 @@ public class CreatingUserTest {
     public void createUser(){
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
-        accessToken = check.SuccessfulResponse(response);
+        accessToken = check.successfulResponse(response);
     }
 
     @Test

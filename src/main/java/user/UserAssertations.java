@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class UserAssertations {
 
     @Step("Успешный ответ")
-    public String SuccessfulResponse(ValidatableResponse response){
+    public String successfulResponse(ValidatableResponse response){
         return response.assertThat()
                 .body("success", equalTo(true))
                 .statusCode(HTTP_OK)

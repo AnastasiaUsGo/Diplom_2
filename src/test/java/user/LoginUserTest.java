@@ -25,7 +25,7 @@ public class LoginUserTest {
     public void loginUser(){
         User user = generator.loginCredentials();
         ValidatableResponse response = client.loginUser(user);
-        check.SuccessfulResponse(response);
+        check.successfulResponse(response);
     }
 
     @Test
