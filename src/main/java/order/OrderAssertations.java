@@ -9,14 +9,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class OrderAssertations {
 
-    @Step("В запросе не передан ни один ингредиент")
-    public void ingredientMustBeProvided(ValidatableResponse response) {
-        response.assertThat()
-                .statusCode(HTTP_BAD_REQUEST)
-                .body("success", equalTo(false))
-                .body("message", equalTo("Ingredient ids must be provided"));
-    }
-
     @Step("Успешное создание заказа")
     public void successfulOrderCreation(ValidatableResponse response) {
         response.assertThat()
@@ -24,21 +16,29 @@ public class OrderAssertations {
                 .body("success", equalTo(true));
     }
 
-    @Step("В запросе передан невалидный хеш ингредиента")
+    @Step("При создании заказа не передан ни один ингредиент")
+    public void ingredientMustBeProvided(ValidatableResponse response) {
+        response.assertThat()
+                .statusCode(HTTP_BAD_REQUEST)
+                .body("success", equalTo(false))
+                .body("message", equalTo("Ingredient ids must be provided"));
+    }
+
+    @Step("При создании заказа передан невалидный хеш ингредиента")
     public void invalidIngredientHash(ValidatableResponse response) {
         response.assertThat()
                 .statusCode(HTTP_INTERNAL_ERROR);
     }
 
-    @Step("Запрос без авторизация (Код 401)")
-    public void responseUnauthorized(ValidatableResponse response) {
+    @Step("Ответ на получения заказа без авторизация")
+    public void responseWithoutAuthorization(ValidatableResponse response) {
         response.assertThat()
                 .statusCode(HTTP_UNAUTHORIZED)
                 .body("success", equalTo(false))
                 .body("message", equalTo("You should be authorised"));
     }
 
-    @Step("Ответ об успешном получении списка заказо")
+    @Step("Ответ об успешном получении списка заказов")
     public void successfulReceiptListOrder(ValidatableResponse response) {
         response.assertThat()
                 .statusCode(HTTP_OK)

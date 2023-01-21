@@ -17,17 +17,8 @@ public class OrderClient extends Client {
                 .then().log().all();
     }
 
-    @Step("Получение заказа авторизованным пользователем")
-    public ValidatableResponse receivingUserOrders(String accessToken) {
-        return spec()
-                .header("Authorization", accessToken)
-                .when()
-                .get(ROOT)
-                .then().log().all();
-    }
-
     @Step("Создание заказа неавторизованным пользователем")
-    public ValidatableResponse creatingOrderUnauthorizedUser(Order order) {
+    public ValidatableResponse creatingOrderWithoutAuthorization(Order order) {
         return spec()
                 .body(order)
                 .when()
@@ -36,6 +27,15 @@ public class OrderClient extends Client {
     }
 
     @Step("Получение заказа авторизованным пользователем")
+    public ValidatableResponse getOrdersWithAuthorization(String accessToken) {
+        return spec()
+                .header("Authorization", accessToken)
+                .when()
+                .get(ROOT)
+                .then().log().all();
+    }
+
+    @Step("Получение заказа неавторизованным пользователем")
     public ValidatableResponse getOrdersWithoutAuthorization() {
         return spec()
                 .when()

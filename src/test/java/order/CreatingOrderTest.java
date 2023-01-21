@@ -53,7 +53,7 @@ public class CreatingOrderTest {
     @DisplayName("Создание заказа без авторизации c ингредиентами")
     public void creatingOrderWithoutAuthorization() {
         Order order = Order.getOrder();
-        ValidatableResponse createResponse = orderClient.creatingOrderUnauthorizedUser(order);
+        ValidatableResponse createResponse = orderClient.creatingOrderWithoutAuthorization(order);
         orderCheck.successfulOrderCreation(createResponse);
     }
 

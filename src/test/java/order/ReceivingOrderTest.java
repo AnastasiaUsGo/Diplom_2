@@ -20,20 +20,18 @@ public class ReceivingOrderTest {
 
     @Test
     @DisplayName("Получение заказов авторизированным пользователем")
-
     public void getOrderWithAuthorization(){
         User user = generator.loginCredentials();
         ValidatableResponse userCreateResponse = client.loginUser(user);
         String accessToken = check.successfulResponse(userCreateResponse);
-        ValidatableResponse response = orderClient.receivingUserOrders(accessToken);
+        ValidatableResponse response = orderClient.getOrdersWithAuthorization(accessToken);
         orderCheck.successfulReceiptListOrder(response);
     }
 
     @Test
     @DisplayName("Получение заказов неавторизованным пользователем")
     public void getOrderWithoutAuthorization(){
-        String wrongAccessToken = (faker.random().hex(10));
-        ValidatableResponse response = orderClient.receivingUserOrders(wrongAccessToken);
-        orderCheck.responseUnauthorized(response);
+        ValidatableResponse response = orderClient.getOrdersWithoutAuthorization();
+        orderCheck.responseWithoutAuthorization(response);
     }
 }
