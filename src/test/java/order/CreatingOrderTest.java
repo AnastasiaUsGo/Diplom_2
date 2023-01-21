@@ -2,6 +2,7 @@ package order;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import user.User;
@@ -20,9 +21,17 @@ public class CreatingOrderTest {
 
     @Before
     public void createUser() {
-        User user = generator.loginCredentials();
-        ValidatableResponse response = client.loginUser(user);
-        accessToken = check.successfulResponse(response);
+        User user = generator.random();
+        ValidatableResponse creationsResponse = client.createUser(user);
+        accessToken = check.successfulResponse(creationsResponse);
+    }
+
+    @After
+    public void deleteUser() {
+        if (!accessToken.equals("null")) {
+            ValidatableResponse deleteResponse = client.deleteUser(accessToken);
+            check.deletedSuccessfully(deleteResponse);
+        }
     }
 
     @Test
