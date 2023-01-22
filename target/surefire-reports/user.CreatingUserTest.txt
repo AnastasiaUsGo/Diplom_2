@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: user.CreatingUserTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.924 s <<< FAILURE! - in user.CreatingUserTest
+createUserWithoutName(user.CreatingUserTest)  Time elapsed: 0.225 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <403> but was <429>.
+
+	at user.CreatingUserTest.createUserWithoutName(CreatingUserTest.java:46)
+
+createUserWithoutEmail(user.CreatingUserTest)  Time elapsed: 0.182 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <403> but was <429>.
+
+	at user.CreatingUserTest.createUserWithoutEmail(CreatingUserTest.java:55)
+
